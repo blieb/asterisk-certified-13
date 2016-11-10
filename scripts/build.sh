@@ -21,7 +21,7 @@ make dep && make && make install && ldconfig && ldconfig -p | grep pj
 cd /tmp
 wget http://downloads.asterisk.org/pub/telephony/certified-asterisk/asterisk-certified-13.1-current.tar.gz
 mkdir asterisk
-tar -xzvf asterisk-certified-13.1-current.tar.gz -C asterisk/ --strip-components=1
+tar -xzvf asterisk-certified-13.8-current.tar.gz -C asterisk/ --strip-components=1
 
 cd /tmp/asterisk
 sh contrib/scripts/get_mp3_source.sh
