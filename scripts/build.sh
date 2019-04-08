@@ -3,7 +3,7 @@
 minimal_apt_get_args='-y --no-install-recommends'
 
 SERVICE_PACKAGES="nano tar htop curl"
-LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev"
+LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev"
 BUILD_PACKAGES="wget subversion build-essential uuid-dev unixodbc-dev pkg-config"
 RUN_PACKAGES="openssl sqlite3 fail2ban iptables"
 
@@ -17,11 +17,11 @@ cd /tmp/pjproject-trunk
 ./configure --libdir=/usr/lib/x86_64-linux-gnu --prefix=/usr --enable-shared --disable-sound --disable-resample --disable-video --disable-opencore-amr CFLAGS='-O2 -DNDEBUG'
 make dep && make && make install && ldconfig && ldconfig -p | grep pj
 
-# asterisk-certified-13.1-current.tar.gz
+# asterisk-16.3.0.tar.gz
 cd /tmp
-wget http://downloads.asterisk.org/pub/telephony/certified-asterisk/asterisk-certified-13.1-current.tar.gz
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16.3.0.tar.gz
 mkdir asterisk
-tar -xzvf asterisk-certified-13.8-current.tar.gz -C asterisk/ --strip-components=1
+tar -xzvf asterisk-16.3.0.tar.gz -C asterisk/ --strip-components=1
 
 cd /tmp/asterisk
 sh contrib/scripts/get_mp3_source.sh
