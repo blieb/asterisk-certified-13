@@ -10,18 +10,13 @@ RUN_PACKAGES="openssl sqlite3 fail2ban iptables"
 apt-get update -y
 apt-get install $minimal_apt_get_args $SERVICE_PACKAGES $LIBS_PACKAGES $BUILD_PACKAGES
 
-# pjsip
-svn co http://svn.pjsip.org/repos/pjproject/trunk/ /tmp/pjproject-trunk
-cd /tmp/pjproject-trunk
-
-./configure --libdir=/usr/lib/x86_64-linux-gnu --prefix=/usr --enable-shared --disable-sound --disable-resample --disable-video --disable-opencore-amr CFLAGS='-O2 -DNDEBUG'
-make dep && make && make install && ldconfig && ldconfig -p | grep pj
-
 # asterisk-16.3.0.tar.gz
 cd /tmp
 wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16.3.0.tar.gz
 mkdir asterisk
 tar -xzvf asterisk-16.3.0.tar.gz -C asterisk/ --strip-components=1
+
+wget http://raw.githubusercontent.com/asterisk/third-party/master/pjproject/2.8/pjproject-2.8.tar.bz2 --no-check-certificate
 
 cd /tmp/asterisk
 sh contrib/scripts/get_mp3_source.sh
