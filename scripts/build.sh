@@ -3,9 +3,9 @@
 minimal_apt_get_args='-y --no-install-recommends'
 
 SERVICE_PACKAGES="nano tar htop curl"
-LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev"
+LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev libodbc1"
 BUILD_PACKAGES="wget subversion build-essential uuid-dev unixodbc-dev pkg-config"
-RUN_PACKAGES="openssl sqlite3 fail2ban iptables"
+RUN_PACKAGES="openssl sqlite3 fail2ban iptables "
 
 apt-get update -y
 apt-get install $minimal_apt_get_args $SERVICE_PACKAGES $LIBS_PACKAGES $BUILD_PACKAGES
@@ -25,7 +25,7 @@ cp /tmp/menuselect.makeopts /tmp/asterisk/menuselect.makeopts
 make && make install && make samples
 
 # add g729
-wget http://asterisk.hosting.lv/bin/codec_g729-ast130-gcc4-glibc-x86_64-pentium4.so -O codec_g729.so
+wget http://asterisk.hosting.lv/bin/codec_g723-ast160-gcc4-glibc-x86_64-pentium4.so -O codec_g729.so
 mv codec_g729.so /usr/lib/x86_64-linux-gnu/asterisk/modules/
 
 touch /var/log/auth.log /var/log/asterisk/messages /var/log/asterisk/security
