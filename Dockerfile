@@ -1,6 +1,6 @@
 # Version: 0.0.4 - Certified Asterisk 13.1-cert2 with sip and pjsip channels
-FROM ubuntu:trusty
-MAINTAINER "cgalindez@gmail.com"
+FROM ubuntu:bionic
+MAINTAINER "martinkollaard@gmail.com"
 
 COPY ./scripts/build.sh /tmp/
 COPY ./conf/asterisk-build/menuselect.makeopts /tmp/
