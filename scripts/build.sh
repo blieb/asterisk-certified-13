@@ -14,7 +14,7 @@ apt-get install $minimal_apt_get_args $SERVICE_PACKAGES $LIBS_PACKAGES $BUILD_PA
 svn co http://svn.pjsip.org/repos/pjproject/trunk/ /tmp/pjproject-trunk
 cd /tmp/pjproject-trunk
 
-./configure --with-pjproject-bundled PJPROJECT_URL=http://raw.githubusercontent.com/asterisk/third-party/master/pjproject/2.8/pjproject-2.8.tar.bz2 --libdir=/usr/lib/x86_64-linux-gnu --prefix=/usr --enable-shared --disable-sound --disable-resample --disable-video --disable-opencore-amr CFLAGS='-O2 -DNDEBUG'
+./configure --libdir=/usr/lib/x86_64-linux-gnu --prefix=/usr --enable-shared --disable-sound --disable-resample --disable-video --disable-opencore-amr CFLAGS='-O2 -DNDEBUG'
 make dep && make && make install && ldconfig && ldconfig -p | grep pj
 
 # asterisk-16.3.0.tar.gz
@@ -26,7 +26,7 @@ tar -xzvf asterisk-16.3.0.tar.gz -C asterisk/ --strip-components=1
 cd /tmp/asterisk
 sh contrib/scripts/get_mp3_source.sh
 cp /tmp/menuselect.makeopts /tmp/asterisk/menuselect.makeopts
-./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib/x86_64-linux-gnu
+./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib/x86_64-linux-gnu --with-pjproject-bundled PJPROJECT_URL=http://raw.githubusercontent.com/asterisk/third-party/master/pjproject/2.8/pjproject-2.8.tar.bz2 
 make && make install && make samples
 
 # add g729
