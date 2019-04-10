@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 minimal_apt_get_args='-y --no-install-recommends'
 
 SERVICE_PACKAGES="nano tar htop curl"
-LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev libodbc1 ca-certificates"
+LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev libodbc1 ca-certificates odbcinst unixODBC"
 BUILD_PACKAGES="wget subversion build-essential uuid-dev unixodbc-dev pkg-config"
 RUN_PACKAGES="openssl sqlite3 fail2ban iptables php-cli"
 
@@ -39,10 +39,19 @@ cat /tmp/jail.conf >> /etc/fail2ban/jail.conf
 
 #install odbc
 cd /tmp
-wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.15-linux-ubuntu18.04-x86-32bit.tar.gz
+wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.15-linux-ubuntu18.04-x86-64bit.tar.gz
 mkdir odbc
-tar zxvf mysql-connector-odbc-8.0.15-linux-ubuntu18.04-x86-32bit.tar.gz -C odbc/ --strip-components=1
+tar zxvf mysql-connector-odbc-8.0.15-linux-ubuntu18.04-x86-64bit.tar.gz -C odbc/ --strip-components=1
 mv odbc/lib/libmyodbc8a.so /usr/lib/x86_64-linux-gnu/odbc/
+
+cat >/etc/odbcinst.ini  <<EOL
+[MySQL]
+Description = ODBC for MySQL
+Driver = /usr/lib/x86_64-linux-gnu/odbc/libmyodbc8a.so
+Setup = /usr/lib/x86_64-linux-gnu/odbc/libodbcmyS.so
+FileUsage = 1
+EOL
+
 
 # clean
 apt-get remove --purge -y $BUILD_PACKAGES
