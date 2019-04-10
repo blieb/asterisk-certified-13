@@ -17,8 +17,6 @@ wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16.3.0.tar.gz
 mkdir asterisk
 tar -xzvf asterisk-16.3.0.tar.gz -C asterisk/ --strip-components=1
 
-wget http://raw.githubusercontent.com/asterisk/third-party/master/pjproject/2.8/pjproject-2.8.tar.bz2 --no-check-certificate
-
 cd /tmp/asterisk
 sh contrib/scripts/get_mp3_source.sh
 cp /tmp/menuselect.makeopts /tmp/asterisk/menuselect.makeopts
@@ -38,6 +36,13 @@ apt-get install $minimal_apt_get_args $RUN_PACKAGES
 rm /etc/fail2ban/filter.d/asterisk.conf
 cp /tmp/asterisk*.conf /etc/fail2ban/filter.d/
 cat /tmp/jail.conf >> /etc/fail2ban/jail.conf
+
+#install odbc
+cd /tmp
+wget https://dev.mysql.com/get/Downloads/Connector-ODBC/8.0/mysql-connector-odbc-8.0.15-linux-ubuntu18.04-x86-32bit.tar.gz
+mkdir odbc
+tar zxvf mysql-connector-odbc-8.0.15-linux-ubuntu18.04-x86-32bit.tar.gz -C odbc/ --strip-components=1
+mv odbc/lib/libmyodbc8a.so /usr/lib/x86_64-linux-gnu/odbc/
 
 # clean
 apt-get remove --purge -y $BUILD_PACKAGES
