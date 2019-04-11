@@ -4,7 +4,7 @@ export DEBIAN_FRONTEND=noninteractive
 minimal_apt_get_args='-y --no-install-recommends'
 
 SERVICE_PACKAGES="nano tar htop curl"
-LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev libodbc1 ca-certificates odbcinst unixODBC"
+LIBS_PACKAGES="libxml2-dev libjansson-dev libncurses5-dev libgsm1-dev libspeex-dev libspeexdsp-dev libssl-dev libsqlite3-dev libedit-dev libodbc1 ca-certificates odbcinst unixodbc"
 BUILD_PACKAGES="wget subversion build-essential uuid-dev unixodbc-dev pkg-config"
 RUN_PACKAGES="openssl sqlite3 fail2ban iptables php-cli"
 
