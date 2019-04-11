@@ -57,7 +57,7 @@ EOL
 apt-get remove --purge -y $BUILD_PACKAGES
 apt-get -y autoremove
 apt-get install $minimal_apt_get_args $LIBS_PACKAGES
-ls -fs /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime 
+ln -fs /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime 
 dpkg-reconfigure --frontend noninteractive tzdata
 apt-get -y clean
 rm -rf /tmp/* /var/tmp/*
