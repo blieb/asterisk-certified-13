@@ -20,7 +20,7 @@ tar -xzvf asterisk-16.3.0.tar.gz -C asterisk/ --strip-components=1
 cd /tmp/asterisk
 sh contrib/scripts/get_mp3_source.sh
 cp /tmp/menuselect.makeopts /tmp/asterisk/menuselect.makeopts
-./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib/x86_64-linux-gnu --with-pjproject-bundled PJPROJECT_URL=http://raw.githubusercontent.com/asterisk/third-party/master/pjproject/2.8/pjproject-2.8.tar.bz2 
+./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib/x86_64-linux-gnu --with-pjproject-bundled
 make && make install && make samples
 
 # add g729
